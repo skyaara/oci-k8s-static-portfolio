@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio
+  namespace: portfolio
+  annotations:
+    oci.oraclecloud.com/oci-network-security-groups: YOUR_INGRESS_SECURITY_GROUP_OCID
+    service.beta.kubernetes.io/oci-load-balancer-shape: flexible
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
+    external-dns.alpha.kubernetes.io/hostname: www.example.com
+spec:
+  type: LoadBalancer
+  selector:
+    app: portfolio
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

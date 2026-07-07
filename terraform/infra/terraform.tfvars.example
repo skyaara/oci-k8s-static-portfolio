@@ -1,0 +1,6 @@
+compartment_id          = "ocid1.tenancy.oc1..YOUR_TENANCY_OCID"
+region                  = "ap-hyderabad-1"
+vcn_id                  = "ocid1.vcn.oc1..YOUR_VCN_OCID"
+k8s_subnet_cidr         = "10.0.0.0/24"
+ssh_public_key          = "ssh-ed25519 AAAA... your-key"
+kubernetes_worker_nodes = 2

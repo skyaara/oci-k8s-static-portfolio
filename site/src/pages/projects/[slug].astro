@@ -1,0 +1,33 @@
+---
+import { projects } from '../../data/projects';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+  title={project.title}
+  description={project.description}
+  path={`/projects/${project.slug}/`}
+  type="article"
+>
+  <h1>{project.title}</h1>
+  <p class="lede">{project.description}</p>
+  <article class="card" style="margin-top: 1.5rem;">
+    <p>{project.body}</p>
+    {(project.url || project.repo) && (
+      <p style="margin-top: 1rem;">
+        {project.url && <a href={project.url}>Live demo</a>}
+        {project.url && project.repo && ' · '}
+        {project.repo && <a href={project.repo}>Source code</a>}
+      </p>
+    )}
+  </article>
+</BaseLayout>
